@@ -1,18 +1,15 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import React from 'react'
-import Categories from '../components/Categories/Categories'
-import SearchBar from '../components/Search/SearchBar'
 
 const Home: NextPage = () => {
 
   return (
     <div>
-      <div>
-        <SearchBar></SearchBar>
-        <Categories></Categories>
-      </div>
+      <Link href={`/FAQ`}>FAQ Help Center</Link>
     </div>
   )
 }
 
 export default Home
+
