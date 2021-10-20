@@ -8,19 +8,18 @@ let client = require("contentful").createClient({
 })
 
 interface CategoryProps {
-  subCategories: ICategory[]
+  knowledgeCategory: ICategory[]
 }
 
-const subCategories: NextPage<CategoryProps> = ({ subCategories }) => {
-
-  const printSubCategories = subCategories.map((subCategory) => {
+const subCategories: NextPage<CategoryProps> = ({ knowledgeCategory }) => {
+  console.log(knowledgeCategory)
+  const printSubCategories = knowledgeCategory.map((subCategory) => {
     return (
-      <ul key={subCategory.fields.slug}>
+      <ul key={subCategory.sys.id}>
         <li>{subCategory.fields.title}</li>
       </ul>
     )
   }) 
-
 
   return (
    <div>
@@ -34,11 +33,12 @@ export default subCategories
 export async function getServerSideProps() {
   let data = await client.getEntries({
     content_type: "knowledgeCategory"
+  
   })
 
   return {
     props: {
-      subCategories: data.items
+      knowledgeCategory: data.items
     }
   }
 }

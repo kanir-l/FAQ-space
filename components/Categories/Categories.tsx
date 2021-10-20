@@ -7,9 +7,13 @@ const Categories = () => {
         title: "Knowledge",
         fields: {
             title: "",
+            description: "",
             slug: ""
+        },
+        sys: {
+            id: ""
         }
-    });
+    })
 
     return(
         <div>
