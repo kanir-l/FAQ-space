@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import React from 'react'
 import Articles from '../../../../components/FAQ/Articles'
-import fetchGraphQL from '../../../../contentful/contentful'
 import { IArticle } from '../../../../interfaces/FAQ'
+import fetchGraphQL from '../../../../services/contentful'
 
 interface PropsArticle {
   articles: IArticle[]

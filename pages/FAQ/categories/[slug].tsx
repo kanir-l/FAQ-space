@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import React from 'react'
 import SubCategories from '../../../components/FAQ/SubCategories'
-import fetchGraphQL from '../../../contentful/contentful'
 import { ISubCategory } from '../../../interfaces/FAQ'
+import fetchGraphQL from '../../../services/contentful'
 
 interface PropsSubCategory {
   subCategories: ISubCategory[]

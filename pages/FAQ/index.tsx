@@ -3,7 +3,9 @@ import React from 'react'
 import Categories from '../../components/FAQ/Categories'
 import SearchBar from '../../components/Search/SearchBar'
 import { ICategory } from '../../interfaces/FAQ'
-import fetchGraphQL from '../../contentful/contentful'
+import fetchGraphQL from '../../services/contentful'
+
+
 
 interface PropsCategory {
   categories: ICategory[]
@@ -41,7 +43,7 @@ export async function getServerSideProps() {
   let data = await client.getEntries({
     content_type: "category"
   }) */
-  
+
   return {
     props: {
       categories: categories
