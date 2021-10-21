@@ -1,5 +1,5 @@
 export default async function fetchGraphQL<T>(
-    query: string,
+    query: string, //Query GraphQL
     preview: boolean = false
   ): Promise<T> {
     const spaceId = process.env.CONTENTFUL_SPACE_ID;
@@ -16,7 +16,7 @@ export default async function fetchGraphQL<T>(
         Authorization: `Bearer ${bearerToken}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query }), //Query GraphQL
     };
   
     try {
@@ -28,3 +28,5 @@ export default async function fetchGraphQL<T>(
       throw new Error('Could not fetch data from Contentful');
     }
   }
+
+  

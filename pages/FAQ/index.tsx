@@ -1,11 +1,9 @@
 import type { NextPage } from 'next'
 import React from 'react'
-import Categories from '../../components/FAQ/Categories'
-import SearchBar from '../../components/Search/SearchBar'
-import { ICategory } from '../../interfaces/FAQ'
-import fetchGraphQL from '../../services/contentful'
-
-
+import Categories from 'components/FAQ/Categories'
+import SearchBar from 'components/Search/SearchBar'
+import { ICategory } from 'interfaces/FAQ'
+import fetchGraphQL from 'services/contentful'
 
 interface PropsCategory {
   categories: ICategory[]
@@ -24,7 +22,7 @@ const FAQ: NextPage<PropsCategory> = ( {categories} ) => {
 
 export default FAQ
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const query = 
   `
     {

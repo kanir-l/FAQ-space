@@ -1,4 +1,4 @@
-interface Fields {
+/* interface Fields {
     title?: string,
     slug: string
     question?: string,
@@ -10,6 +10,7 @@ interface Fields {
 interface Sys {
     id: string
 }
+ */
 
 export interface ICategory {
     title: string,

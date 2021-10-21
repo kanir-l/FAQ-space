@@ -10,7 +10,7 @@ const Categories = (Props: PropsCategory) => {
     const printCategories = Props.categories.map((category: ICategory) => {
         return (
           <div key={category.slug}>
-            <Link href={`/FAQ/categories/${category.title}`}>
+            <Link href={`/FAQ/categories/${category.slug}`}>
                 {category.title}
             </Link>
           </div>

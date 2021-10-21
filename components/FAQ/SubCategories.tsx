@@ -10,7 +10,7 @@ const SubCategories = (Props: PropsSubCategory) => {
     const printSubCategories = Props.subCategories.map((subCategory: ISubCategory) => {
         return (
           <div key={subCategory.slug}>
-            <Link href={`/FAQ/categories/sub-categories/${subCategory.title}`}>
+            <Link href={`/FAQ/categories/sub-categories/${subCategory.slug}`}>
                 {subCategory.title}
             </Link>
           </div>
