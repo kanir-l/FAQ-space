@@ -6,16 +6,19 @@ interface PropsSubCategory {
 }
 
 const SubCategories = (Props: PropsSubCategory) => {
-    
-    const printSubCategories = Props.subCategories.map((subCategory: ISubCategory) => {
-        return (
-          <div key={subCategory.slug}>
-            <Link href={`/FAQ/categories/sub-categories/${subCategory.slug}`}>
-                {subCategory.title}
-            </Link>
-          </div>
-        )
-      }) 
+    let printSubCategories = []
+
+    if(Props.subCategories){
+        printSubCategories = Props.subCategories.map((subCategory: ISubCategory) => {
+            return (
+                <div key={subCategory.slug}>
+                    <Link href={`/FAQ/sub-categories/${subCategory.slug}`}>
+                        {subCategory.title}
+                    </Link>
+                </div>
+            )
+        }) 
+    }
 
     return(
         <div>

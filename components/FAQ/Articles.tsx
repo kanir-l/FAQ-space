@@ -6,15 +6,18 @@ interface PropsArticle {
 }
 
 const SubCategories = (Props: PropsArticle) => {
+    let printArticles = []
     
-    const printArticles = Props.articles.map((article: IArticle) => {
-        return (
-          <div key={article.slug}>
-                <b>{article.question}</b>
-                <p>{article.answer}</p>
-          </div>
-        )
-      }) 
+    if (Props.acticles) {
+        printArticles = Props.articles.map((article: IArticle) => {
+            return (
+            <div key={article.slug}>
+                    <b>{article.question}</b>
+                    {/* <p>{article.answer}</p> */}
+            </div>
+            )
+        })
+    } 
 
     return(
         <div>

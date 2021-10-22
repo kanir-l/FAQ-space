@@ -6,7 +6,6 @@ interface PropsCategory {
 }
 
 const Categories = (Props: PropsCategory) => {
-    
     const printCategories = Props.categories.map((category: ICategory) => {
         return (
           <div key={category.slug}>
