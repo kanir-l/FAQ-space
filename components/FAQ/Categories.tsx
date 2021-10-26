@@ -1,15 +1,15 @@
 import Link from 'next/link'
-import { ICategory } from '../../interfaces/FAQ'
+import { ICategory } from 'interfaces/FAQ'
 
 interface PropsCategory {
     categories: ICategory[]
 }
 
 const Categories = (Props: PropsCategory) => {
-    const printCategories = Props.categories.map((category: ICategory) => {
+    const categories = Props.categories.map((category: ICategory) => {
         return (
           <div key={category.slug}>
-            <Link href={`/FAQ/categories/${category.slug}`}>
+            <Link href={`/faq/${category.slug}`}>
                 {category.title}
             </Link>
           </div>
@@ -18,8 +18,9 @@ const Categories = (Props: PropsCategory) => {
 
     return(
         <div>
-            {printCategories}
+            {categories}
         </div>
     )
 }
+
 export default Categories

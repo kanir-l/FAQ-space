@@ -7,7 +7,7 @@ const Header: React.FC<HeaderProps> = () => {
     return (
         <header>
             <div className="Logo">
-                <h1>Welcome to the FAQ Knowledge Space</h1>
+                <h1>FAQ, Help Center</h1>
             </div>
     
             <nav>

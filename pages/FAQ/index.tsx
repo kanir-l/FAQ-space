@@ -2,14 +2,14 @@ import type { NextPage } from 'next'
 import React from 'react'
 import Categories from 'components/FAQ/Categories'
 import SearchBar from 'components/Search/SearchBar'
-import { ICategory } from 'interfaces/FAQ'
+import  { GetCategoryByGraphQL, ICategory } from 'interfaces/FAQ'
 import fetchGraphQL from 'services/contentful'
 
 interface PropsCategory {
   categories: ICategory[]
 }
 
-const FAQ: NextPage<PropsCategory> = ( {categories} ) => {
+const fag: NextPage<PropsCategory> = ( {categories} ) => {
   return (
     <div>
       <div>
@@ -20,10 +20,10 @@ const FAQ: NextPage<PropsCategory> = ( {categories} ) => {
   )
 }
 
-export default FAQ
+export default fag
 
 export async function getStaticProps() {
-  const query = 
+  const queryCategory = 
   `
     {
       categoryCollection(limit: 20) {
@@ -34,8 +34,8 @@ export async function getStaticProps() {
       }
     }
   `
-  const data = await fetchGraphQL(query)
-  const categories = data.data.categoryCollection.items
+  const returnCategories = await fetchGraphQL<GetCategoryByGraphQL>(queryCategory)
+  const categories = returnCategories.data.categoryCollection.items
 
   /* 
   let data = await client.getEntries({
@@ -48,3 +48,5 @@ export async function getStaticProps() {
     }
   }
 }
+
+
