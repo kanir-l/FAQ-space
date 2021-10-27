@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent } from 'react'
 
 function Search() {
     //const [searchTerms, setSearchTerm] = useState<ISearchTerm>();

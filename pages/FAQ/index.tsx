@@ -1,9 +1,13 @@
 import type { NextPage } from 'next'
 import React from 'react'
+// Components
 import Categories from 'components/FAQ/Categories'
 import SearchBar from 'components/Search/SearchBar'
-import  { GetCategoryByGraphQL, ICategory } from 'interfaces/FAQ'
+// Services
 import fetchGraphQL from 'services/contentful'
+// Interfaces
+import  { GetCategoryByGraphQL, ICategory } from 'interfaces/FAQ'
+
 
 interface PropsCategory {
   categories: ICategory[]

@@ -1,9 +1,12 @@
-import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import type { NextPage, GetStaticProps } from 'next'
 import React from 'react'
+// Components
 import SubCategories from 'components/FAQ/SubCategories'
-import Articles from 'components/FAQ/Articles'
-import { ISubCategory, IArticle, GetSubCategoryByGraphQL, GetArticleByGraphQL, GetCategoryByGraphQL } from 'interfaces/FAQ'
+// Services
 import fetchGraphQL from 'services/contentful'
+// Interfaces
+import { ISubCategory, IArticle, GetSubCategoryByGraphQL, GetArticleByGraphQL, GetCategoryByGraphQL } from 'interfaces/FAQ'
+
 
 interface Props {
   subCategories: ISubCategory[]
@@ -20,6 +23,7 @@ const categories: NextPage<Props> = ({subCategories, articles}) => {
 export default categories
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  //Sub-categories
   const categorySlug = context.params?.category 
   if (!categorySlug) {
     return {
@@ -59,7 +63,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       articleCollection(where: {subCategory: {OR: [${subCategorySelectors.join(", ")}]}}) {
         items {
           question
-          answer
+          
           slug
           category {
             title

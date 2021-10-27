@@ -11,13 +11,13 @@ export interface ISubCategory {
 
 export interface IArticle {
     question: string,
-    answer: string,
+    answer: Object,
     slug: string,
     category: ICategory,
     subCategory: ISubCategory
 }
 
-
+//Contentful + GraphQL
 export interface GetCategoryByGraphQL {
     data: {
         categoryCollection: {

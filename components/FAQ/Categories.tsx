@@ -1,4 +1,5 @@
 import Link from 'next/link'
+// Interfaces
 import { ICategory } from 'interfaces/FAQ'
 
 interface PropsCategory {

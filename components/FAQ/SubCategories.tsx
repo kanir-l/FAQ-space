@@ -1,6 +1,9 @@
 import Link from 'next/link'
-import { IArticle, ISubCategory } from 'interfaces/FAQ'
+// Components
 import Articles from './Articles'
+// Interfaces
+import { IArticle, ISubCategory } from 'interfaces/FAQ'
+
 
 
 interface PropsSubCategory {
@@ -8,7 +11,7 @@ interface PropsSubCategory {
     articles: IArticle[]
 }
 
-const renderArticles = (subCatSlug, articles) => {
+const renderArticles = (subCatSlug: string, articles: IArticle[]) => {
     const subCategoryArticles = articles.filter((article) => (article.subCategory.slug === subCatSlug))
     return <Articles articles={subCategoryArticles}></Articles>
 }

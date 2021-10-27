@@ -1,8 +1,12 @@
-import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import type { NextPage, GetStaticProps } from 'next'
 import React from 'react'
+// Components
 import Articles from 'components/FAQ/Articles'
-import { GetArticleByGraphQL, GetSubCategoryByGraphQL, IArticle } from 'interfaces/FAQ'
+// Services
 import fetchGraphQL from 'services/contentful'
+// Interfaces
+import { GetArticleByGraphQL, GetSubCategoryByGraphQL, IArticle } from 'interfaces/FAQ'
+
 
 interface PropsArticle {
   articles: IArticle[]
@@ -32,7 +36,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       articleCollection(where: {subCategory: {slug:"${subCatSlugPath}"}}) {
         items {
           question
-          answer
+          
           slug
           category {
             title

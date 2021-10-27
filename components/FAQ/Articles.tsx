@@ -6,7 +6,6 @@ interface PropsArticle {
 }
 
 const Articles = (Props: PropsArticle) => {
- 
     if (!Props.articles) {
         return null
     }

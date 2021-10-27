@@ -1,25 +1,30 @@
-import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import type { NextPage, GetStaticProps } from 'next'
 import React from 'react'
-import Articles from 'components/FAQ/Articles'
-import { GetArticleByGraphQL, IArticle } from 'interfaces/FAQ'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+
+// Services
 import fetchGraphQL from 'services/contentful'
+// Interfaces
+import { GetArticleByGraphQL, IArticle } from 'interfaces/FAQ'
+
 
 interface PropsArticle {
   article: IArticle
 }
 
 const article: NextPage<PropsArticle > = ({ article }) => {
+  const renderAnswer = documentToReactComponents(article.answer.json)
+
   if (!article) {
     return null 
   }
   return (
    <div>
      <p>{article.question}</p>
-     <p>{article.answer}</p>
+     {renderAnswer}
    </div>
   )
 }
-
 export default article
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -32,27 +37,47 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const articleSlugPath = Array.isArray(articleSlug) ? articleSlug[0] : articleSlug
   
   const queryArticle = `
-    {
-      articleCollection(where: {slug: "${articleSlugPath}"}) {
-        items {
-          question
-          answer
-          slug
-          category {
-            title
-            slug
-          }
-          subCategory {
-            title
-            slug
-            category {
-              title
-              slug
+  {
+    articleCollection(where: {slug: "${articleSlugPath}"} limit:10) {
+      items {
+        question
+        answer {
+          json 
+          links {
+            assets {
+              block {
+                title
+                url
+              }
+            }
+            entries {
+            inline {
+              sys {
+                id
+              }
+              ... on Article {
+                 question
+                slug
+                category {
+                  title
+                  slug
+                }
+                subCategory {
+                  title
+                  slug
+                  category {
+                    title
+                    slug
+                  }
+                }
+              }
             }
           }
+          } 
         }
       }
     }
+  }
   `
 
   const returnArticles = await fetchGraphQL<GetArticleByGraphQL>(queryArticle)
