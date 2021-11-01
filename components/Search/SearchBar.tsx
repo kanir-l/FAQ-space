@@ -1,4 +1,6 @@
 import React, { ChangeEvent } from 'react'
+// Style
+import style from 'SearchBar.module.scss'
 
 function Search() {
     //const [searchTerms, setSearchTerm] = useState<ISearchTerm>();
@@ -8,8 +10,8 @@ function Search() {
       }
 
     return (
-        <div>
-            <input type="text" name="input-term" id="input-term" required placeholder="Search..." onChange={inputSearch} />
+        <div className="width-100% height-xxxxl padding-xl flex flex-center bg-primary">
+            <input className="search-input__input form-control width-60% height-lg radius-full border-black text-sm" type="search" name="input-term" id="input-term" required placeholder="Search..." onChange={inputSearch} />
         </div>
     )
 }

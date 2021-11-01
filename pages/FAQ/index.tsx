@@ -23,8 +23,8 @@ const fag: NextPage<PropsCategory> = ( {categories} ) => {
     </div>
   )
 }
-
 export default fag
+
 
 export async function getStaticProps() {
   const queryCategory = 

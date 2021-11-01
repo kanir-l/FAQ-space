@@ -6,7 +6,6 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <Link href={`/faq`}>FAQ Help Center</Link>
     </div>
   )
 }

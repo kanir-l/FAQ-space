@@ -1,7 +1,9 @@
 import type { NextPage, GetStaticProps } from 'next'
-import React from 'react'
+import React, { useState } from 'react'
+import Link from 'next/link'
 // Components
 import SubCategories from 'components/FAQ/SubCategories'
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 // Services
 import fetchGraphQL from 'services/contentful'
 // Interfaces
@@ -11,16 +13,25 @@ import { ISubCategory, IArticle, GetSubCategoryByGraphQL, GetArticleByGraphQL, G
 interface Props {
   subCategories: ISubCategory[]
   articles: IArticle[]
+  catSlug: string
 }
 
-const categories: NextPage<Props> = ({subCategories, articles}) => {
+const category: NextPage<Props> = ({subCategories, articles, catSlug}) => {
+  // Breadcrumbs
+  const breadcrumbs = [
+    <Link href={'/faq'}><li className="color-accent">faq</li></Link>,
+    catSlug
+  ]
+
   return (
    <div>
+      <Breadcrumb breadcrumbs={breadcrumbs}></Breadcrumb>
       <SubCategories subCategories={subCategories} articles={articles}></SubCategories>
    </div>
   )
 }
-export default categories
+export default category
+
 
 export const getStaticProps: GetStaticProps = async (context) => {
   //Sub-categories
@@ -40,7 +51,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
         title
         slug
         category {
-          title
           slug
         }
       }
@@ -72,10 +82,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
           subCategory {
             title
             slug
-            category {
-              title
-              slug
-            }
           }
         }
       }
@@ -88,7 +94,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       subCategories: subCategories,
-      articles: articles   
+      articles: articles,
+      catSlug: subCategories[0].category.slug   
     }
   }
 } 

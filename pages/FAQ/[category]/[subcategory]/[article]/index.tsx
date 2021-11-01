@@ -1,7 +1,9 @@
 import type { NextPage, GetStaticProps } from 'next'
-import React from 'react'
+import React, { useState } from 'react'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-
+import Link from 'next/link'
+//Components 
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 // Services
 import fetchGraphQL from 'services/contentful'
 // Interfaces
@@ -10,25 +12,40 @@ import { GetArticleByGraphQL, IArticle } from 'interfaces/FAQ'
 
 interface PropsArticle {
   article: IArticle
+  subCatSlug: string
+  catSlug: string,
+  articleSlug: string
 }
 
-const article: NextPage<PropsArticle > = ({ article }) => {
-  const renderAnswer = documentToReactComponents(article.answer.json)
+const article: NextPage<PropsArticle > = ({ article, subCatSlug, catSlug, articleSlug }) => {
+  // Breadcrump
+  const breadcrumbs = [
+    <Link href={'/faq'}><li className="color-accent">faq</li></Link>,
+    <Link href={`/faq/${catSlug}`}><li className="color-accent">{catSlug}</li></Link>,
+    <Link href={`/faq/${catSlug}/${subCatSlug}`}><li className="color-accent">{subCatSlug}</li></Link>,
+    articleSlug
+  ]
 
+  // An Article
   if (!article) {
     return null 
   }
+ 
   return (
-   <div>
-     <p>{article.question}</p>
-     {renderAnswer}
-   </div>
+    <div>
+      <Breadcrumb breadcrumbs={breadcrumbs}></Breadcrumb>
+      <div className="width-100% padding-xl">
+        <p className="font-bold margin-bottom-lg">{article.question}</p>
+        {documentToReactComponents(article.answer.json)}
+      </div>
+    </div>
   )
 }
 export default article
 
+
 export const getStaticProps: GetStaticProps = async (context) => {
-  const articleSlug = context.params?.article 
+  const articleSlug = context.params?.article
   if (!articleSlug) {
     return {
       notFound: true
@@ -51,29 +68,35 @@ export const getStaticProps: GetStaticProps = async (context) => {
               }
             }
             entries {
-            inline {
-              sys {
-                id
-              }
-              ... on Article {
-                 question
-                slug
-                category {
-                  title
-                  slug
+              inline {
+                sys {
+                  id
                 }
-                subCategory {
-                  title
+                ... on Article {
+                  question
                   slug
                   category {
                     title
                     slug
                   }
+                  subCategory {
+                    title
+                    slug
+                    category {
+                      title
+                      slug
+                    }
+                  }
                 }
               }
             }
-          }
           } 
+        }
+        category {
+          slug
+        }
+        subCategory {
+          slug
         }
       }
     }
@@ -90,7 +113,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   } else {
     return {
       props: {
-        article: article[0]
+        article: article[0],
+        articleSlug: articleSlug,
+        subCatSlug: article[0].subCategory.slug,
+        catSlug: article[0].category.slug
       }
     }
   }

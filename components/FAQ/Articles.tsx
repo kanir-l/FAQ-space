@@ -12,17 +12,16 @@ const Articles = (Props: PropsArticle) => {
 
     const articles = Props.articles.map((article: IArticle) => {
         return (
-            <div key={article.slug}>
+            <div key={article.slug} className="width-100%">
                 <Link href ={`/faq/${article.category.slug}/${article.subCategory.slug}/${article.slug}`}>
-                    <u>{article.question}</u>
+                    <p className="margin-bottom-md">{article.question}</p>
                 </Link>
             </div> 
         )
     })
-       
      
     return(
-        <div>
+        <div className="width-100% padding-xl">
             {articles}
         </div>
     )

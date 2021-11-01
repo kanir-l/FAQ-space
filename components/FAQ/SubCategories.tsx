@@ -5,7 +5,6 @@ import Articles from './Articles'
 import { IArticle, ISubCategory } from 'interfaces/FAQ'
 
 
-
 interface PropsSubCategory {
     subCategories: ISubCategory[]
     articles: IArticle[]
@@ -13,7 +12,13 @@ interface PropsSubCategory {
 
 const renderArticles = (subCatSlug: string, articles: IArticle[]) => {
     const subCategoryArticles = articles.filter((article) => (article.subCategory.slug === subCatSlug))
-    return <Articles articles={subCategoryArticles}></Articles>
+    return subCategoryArticles.map((article) => {
+        return (
+            <Link href={`/faq/${article.category.slug}/${article.subCategory.slug}/${article.slug}`}>
+                <p className="color-inherit">{article.question}</p>
+            </Link>
+        )
+    })
 }
 
 const SubCategories = (Props: PropsSubCategory) => {
@@ -23,9 +28,9 @@ const SubCategories = (Props: PropsSubCategory) => {
 
     const subCategories = Props.subCategories.map((subCategory: ISubCategory) => {
         return (
-            <div key={subCategory.slug}>
+            <div key={subCategory.slug} className="margin-bottom-md">
                 <Link href={`/faq/${subCategory.category.slug}/${subCategory.slug}`}>
-                    <h3>{subCategory.title}</h3>
+                    <h3 className="line-height-lg">{subCategory.title}</h3>
                 </Link>
                 {renderArticles(subCategory.slug, Props.articles)}
             </div>
@@ -33,10 +38,9 @@ const SubCategories = (Props: PropsSubCategory) => {
     }) 
 
     return(
-        <div>
+        <div className="width-100% padding-xl">
             {subCategories}
         </div>
     )
 }
-
 export default SubCategories

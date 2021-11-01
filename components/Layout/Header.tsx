@@ -1,25 +1,21 @@
 import React from 'react'
 import Link from 'next/link'
-// Style
-import style from './Header.module.scss';
+
 
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
     return (
-        <header>
-            <div className="margin-top-xs margin-bottom-xs">
-                <img className={style.logo} src="/flowscape.jpg" />
-                <h3 className="color-primary padding-left-xl">FAQ, Help Center</h3>
-            </div>
-    
-            <nav>
-                <Link href={"#"}>About</Link>
-                <Link href={"#"}>Products</Link>
-                <Link href={"#"}>Contact</Link>
+        <header className="width-100% height-xxxl padding-left-xl paddin-top-xs flex flex-center">
+            <img src = "/flowscape.jpg" className="width-20%"/>
+            <nav className="width-60% block margin-left-lg">
+                <Link href={'/'}><li className="color-accent margin-right-md inline">Solutions</li></Link>
+                <Link href={'/'}><li className="color-accent margin-right-md inline">Products</li></Link>
+                <Link href={'/'}><li className="color-accent margin-right-md inline">Price</li></Link>
+                <Link href={'/faq'}><li className="color-accent margin-right-md inline">FAQ</li></Link>
             </nav> 
+            <h3 className="width-20% color-black block">Help Center</h3>
         </header>
     )
 }
-
 export default Header

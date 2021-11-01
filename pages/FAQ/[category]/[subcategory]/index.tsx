@@ -1,7 +1,9 @@
 import type { NextPage, GetStaticProps } from 'next'
-import React from 'react'
+import React, { useState } from 'react'
+import Link from 'next/link'
 // Components
 import Articles from 'components/FAQ/Articles'
+import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 // Services
 import fetchGraphQL from 'services/contentful'
 // Interfaces
@@ -10,16 +12,27 @@ import { GetArticleByGraphQL, GetSubCategoryByGraphQL, IArticle } from 'interfac
 
 interface PropsArticle {
   articles: IArticle[]
+  subCatSlug: string
+  catSlug: string
 }
 
-const subCategories: NextPage<PropsArticle > = ({ articles }) => {
+const subCategories: NextPage<PropsArticle > = ({ articles, subCatSlug, catSlug }) => {
+  // Breadcrump
+  const breadcrumbs = [
+    <Link href={'/faq'}><li className="color-accent">faq</li></Link>,
+    <Link href={`/faq/${catSlug}`}><li className="color-accent">{catSlug}</li></Link>,
+    subCatSlug
+  ]
+
   return (
    <div>
+     <Breadcrumb breadcrumbs={breadcrumbs}></Breadcrumb>
      <Articles articles={articles}></Articles>
    </div>
   )
 }
 export default subCategories
+
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const subCategorySlug = context.params?.subcategory
@@ -36,19 +49,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
       articleCollection(where: {subCategory: {slug:"${subCatSlugPath}"}}) {
         items {
           question
-          
           slug
           category {
-            title
             slug
           }
           subCategory {
-            title
             slug
-            category {
-              title
-              slug
-            }
           }
         }
       }
@@ -60,7 +66,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      articles: articles
+      articles: articles,
+      subCatSlug: articles[0].subCategory.slug,
+      catSlug: articles[0].category.slug
     }
   }
 } 
@@ -82,7 +90,6 @@ export async function getStaticPaths() {
 
   const returnData = await fetchGraphQL<GetSubCategoryByGraphQL>(query)
   const subCatories = returnData.data.subCategoryCollection.items
-
 
   const paths = subCatories.map(( subCategory ) => {
     return {
