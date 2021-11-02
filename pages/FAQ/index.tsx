@@ -6,19 +6,20 @@ import SearchBar from 'components/Search/SearchBar'
 // Services
 import fetchGraphQL from 'services/contentful'
 // Interfaces
-import  { GetCategoryByGraphQL, ICategory } from 'interfaces/FAQ'
+import  { GetSubCategoryByGraphQL, ISubCategory } from 'interfaces/FAQ'
 
 
 interface PropsCategory {
-  categories: ICategory[]
+  subCategories: ISubCategory[]
 }
 
-const fag: NextPage<PropsCategory> = ( {categories} ) => {
+const fag: NextPage<PropsCategory> = ( {subCategories} ) => {
+
   return (
     <div>
       <div>
         <SearchBar></SearchBar>
-        <Categories categories={categories}></Categories>
+        <Categories subCategories={subCategories}></Categories>
       </div>
     </div>
   )
@@ -27,19 +28,23 @@ export default fag
 
 
 export async function getStaticProps() {
-  const queryCategory = 
+  const querySubCategory = 
   `
     {
-      categoryCollection(limit: 20) {
+      subCategoryCollection(limit: 20) {
         items {
           title
           slug
+          category {
+            title
+            slug
+          }
         } 
       }
     }
   `
-  const returnCategories = await fetchGraphQL<GetCategoryByGraphQL>(queryCategory)
-  const categories = returnCategories.data.categoryCollection.items
+  const returnSubCategories = await fetchGraphQL<GetSubCategoryByGraphQL>(querySubCategory)
+  const subCategories = returnSubCategories.data.subCategoryCollection.items
 
   /* 
   let data = await client.getEntries({
@@ -48,7 +53,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      categories: categories
+      subCategories: subCategories
     }
   }
 }

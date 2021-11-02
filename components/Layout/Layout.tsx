@@ -9,7 +9,7 @@ const Layout: React.FC<LayoutProps> = ( {children} ) => {
     return (
         <div>
             <Header />
-            { children }
+            <div className="height-100%">{ children }</div>
             <Footer />
         </div>
     )

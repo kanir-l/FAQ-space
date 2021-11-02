@@ -3,11 +3,3 @@
 
 // add your custom style
 @use 'custom-style';
-
-.breadcrumbs {}
-
-.breadcrumbs__item {
-  display: inline-block; // flex fallback
-  display: inline-flex;
-  align-items: center;
-}

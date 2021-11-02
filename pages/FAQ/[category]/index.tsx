@@ -19,7 +19,7 @@ interface Props {
 const category: NextPage<Props> = ({subCategories, articles, catSlug}) => {
   // Breadcrumbs
   const breadcrumbs = [
-    <Link href={'/faq'}><li className="color-accent">faq</li></Link>,
+    <Link href={'/faq'}>faq</Link>,
     catSlug
   ]
 

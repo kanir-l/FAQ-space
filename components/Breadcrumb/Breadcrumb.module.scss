@@ -1,3 +1,11 @@
-.logo {
-    width: 100%
-};
+.item {
+  display: inline-block; // flex fallback
+  display: inline-flex;
+  align-items: center;
+  
+}
+
+.breadcrumb {
+    width: 100%;
+}
+

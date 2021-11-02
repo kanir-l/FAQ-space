@@ -20,9 +20,9 @@ interface PropsArticle {
 const article: NextPage<PropsArticle > = ({ article, subCatSlug, catSlug, articleSlug }) => {
   // Breadcrump
   const breadcrumbs = [
-    <Link href={'/faq'}><li className="color-accent">faq</li></Link>,
-    <Link href={`/faq/${catSlug}`}><li className="color-accent">{catSlug}</li></Link>,
-    <Link href={`/faq/${catSlug}/${subCatSlug}`}><li className="color-accent">{subCatSlug}</li></Link>,
+    <Link href={'/faq'}>faq</Link>,
+    <Link href={`/faq/${catSlug}`}>{catSlug}</Link>,
+    <Link href={`/faq/${catSlug}/${subCatSlug}`}>{subCatSlug}</Link>,
     articleSlug
   ]
 

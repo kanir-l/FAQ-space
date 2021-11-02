@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import style from './breadcrumb.module.scss'
+import classnames from 'classnames'
 
 
 interface PropsBreadcrumb {
@@ -7,23 +8,36 @@ interface PropsBreadcrumb {
 }
 
 const Breadcrumb = (Props: PropsBreadcrumb) => {
+    // Styles classNames with classnames
+    const nav = classnames(
+        style.breadcrumb, 
+        'text-sm padding-left-xl'
+    )
+    const ol = classnames(
+        'flex', 
+        'flex-wrap', 
+        'gap-xxs'
+    )
+    const span = classnames(
+        'color-contrast-lower', 
+        'margin-left-xxs'
+    )
+
     return (
-        <nav className={style.logo + "breadcrumbs text-sm padding-left-xl"} aria-label="Breadcrumbs">
-            <ol className="flex flex-wrap gap-xxs">
+        <nav className={nav} aria-label="Breadcrumbs">
+            <ol className={ol}>
                 {
-                    Props.breadcrumbs.map((breadcrumb, index: number) => {
+                    Props.breadcrumbs.map((breadcrumb, index) => {
                         return (
-                            <li key={index} className="breadcrumbs__item">
-                                <button className={`border-bg-light border-opacity-0 radius-md`}>
-                                    {breadcrumb}
-                                </button>
+                            <li key={breadcrumb.toString()}>
+                                {breadcrumb}
                                 {index < Props.breadcrumbs.length - 1 && 
-                                <span className="aria-current=page color-contrast-lower margin-left-xxs" aria-hidden="true">/</span>}
+                                    <span className={span} aria-hidden="true" aria-current="page">/</span>
+                                }
                             </li>
                         )
                     })
                 }
-             
             </ol>
         </nav>
     )
