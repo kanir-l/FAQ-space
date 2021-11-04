@@ -9,7 +9,7 @@ interface Props {
 const Search: FC<Props> = ({ value, onChange, onSubmit }) => {
   return (
     <div className="bg-primary">
-      <div className="container max-width-lg">
+      <div className="container max-width-md">
         <form onSubmit={onSubmit} className="width-100% height-xxxxl flex items-center">
           <input
             className='form-control width-100%'

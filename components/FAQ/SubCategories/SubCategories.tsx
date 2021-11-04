@@ -1,3 +1,4 @@
+import { FC, Fragment } from 'react';
 import Link from 'next/link';
 import classnames from 'classnames';
 import style from './SubCategories.module.scss';
@@ -29,17 +30,18 @@ const renderArticles = (subCatSlug: string, articles: IArticle[]) => {
   });
 };
 
-const SubCategories = (Props: PropsSubCategory) => {
+
+  const SubCategories: FC<PropsSubCategory> = ({ subCategories, articles }) => {
   const box = classnames('margin-bottom-md', 'cursor-pointer');
   const container = classnames('width-100%', 'height-100%', 'padding-xl');
   const h3 = classnames(style.underline);
 
-  if (!Props.subCategories) {
+  if (!subCategories) {
     return null;
   }
 
-  const subCategories = Props.subCategories.map((subCategory: ISubCategory) => {
-    const articles = renderArticles(subCategory.slug, Props.articles);
+  const subCategoriesAndArticles = subCategories.map((subCategory: ISubCategory) => {
+    const allArticles = renderArticles(subCategory.slug, articles);
 
     return (
       <div key={subCategory.slug} className={box}>
@@ -51,11 +53,11 @@ const SubCategories = (Props: PropsSubCategory) => {
             <h3 className={h3}>{subCategory.title}</h3>
           </a>
         </Link>
-        {articles}
+        {allArticles}
       </div>
     );
   });
 
-  return <div className={container}>{subCategories}</div>;
+  return <div className={container}>{subCategoriesAndArticles}</div>;
 };
 export default SubCategories;
