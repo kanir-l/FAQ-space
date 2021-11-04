@@ -1,5 +1,4 @@
 import { FC, Fragment } from 'react';
-import Link from 'next/link';
 import classnames from 'classnames';
 import style from './Categories.module.scss';
 
@@ -15,19 +14,17 @@ interface PropsCategory {
 
 const Categories: FC<PropsCategory> = ({ subCategories }) => {
   const container = classnames(
-    'width-100%',
-    'height-100%',
     'padding-lg',
-    'flex',
+    'flex-center',
     'flex-wrap'
   );
 
   const categories = subCategories.map((subCategory: ISubCategory) => {
     return (
-      <>
-        <Card title={subCategory.category.title} description={subCategory.title} slug={subCategory.category.slug} / >
-      </>
-    )
+        <div key={subCategory.category.slug}>
+          <Card title={subCategory.category.title} description={subCategory.title} slug={`/faq/${subCategory.category.slug}`} / >
+        </div>
+      )
   })
   
   return <div className={container}>{categories}</div>

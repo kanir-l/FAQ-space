@@ -38,14 +38,12 @@ const FaqStartPage: NextPage<PropsCategory> = ({ subCategories }) => {
 
   return (
     <div>
-      <div>
         <SearchBar
           value={searchQuery}
           onChange={handleChange}
           onSubmit={handleOnSubmit}
         />
         <Categories subCategories={subCategories} />
-      </div>
     </div>
   );
 }
