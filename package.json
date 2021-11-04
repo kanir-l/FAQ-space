@@ -11,7 +11,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "prepare": "husky install",
-    "pre-commit": "next lint"
+    "pre-commit": "next lint --fix && git add ."
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.5.1",
