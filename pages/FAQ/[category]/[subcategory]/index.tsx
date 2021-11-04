@@ -1,8 +1,8 @@
 import type { NextPage, GetStaticProps } from 'next'
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 // Components
-import Articles from 'components/FAQ/Articles'
+import Articles from 'components/FAQ/Articles/Articles'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 // Services
 import fetchGraphQL from 'services/contentful'

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import classnames from 'classnames'
-import style from './articles.module.scss'
+import style from './Articles.module.scss'
 // Interfaces
 import { IArticle } from 'interfaces/FAQ'
 

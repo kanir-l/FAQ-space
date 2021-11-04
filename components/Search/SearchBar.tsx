@@ -1,13 +1,15 @@
 import React, { ChangeEvent } from 'react'
 import router from 'next/dist/client/router'
 import classnames from 'classnames'
-// Style
-import style from 'SearchBar.module.scss'
 // Interfaces 
 import { KeyboardEvent } from 'interfaces/FAQ'
 
+interface Props {
+    onChange:(event: ChangeEvent<HTMLInputElement>) => void  
+    value: string
+}
 
-function Search () {
+function Search (props: Props) {
     // Styles classNames with classnames
     const box = classnames(
         'width-100%', 
@@ -27,16 +29,18 @@ function Search () {
         'border-black', 
     )
 
-    const inputSearch = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            router.push(`/faq/search/${e.target.value}?searchQuery=${e.target.value}`)
-          }
-      }
-
     return (
         <div className={box}>
-            <input className={input} type="search" name="input-term" id="input-term" required placeholder="Search..."
-            onKeyDown={inputSearch} />
+            <input className={input} 
+                type="search" 
+                name="input-term" 
+                id="input-term" 
+                placeholder="Search..."
+                required 
+                value={props.value}
+                onChange={props.onChange} 
+                data-testid="seach-input"
+            />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import classnames from 'classnames'
-import style from './subCategories.module.scss'
+import style from './SubCategories.module.scss'
 // Interfaces
 import { IArticle, ISubCategory } from 'interfaces/FAQ'
 

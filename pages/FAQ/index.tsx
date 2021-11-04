@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 // Components
-import Categories from 'components/FAQ/Categories'
+import Categories from 'components/FAQ/Categories/Categories'
 import SearchBar from 'components/Search/SearchBar'
 // Services
 import fetchGraphQL from 'services/contentful'
@@ -14,11 +14,16 @@ interface PropsCategory {
 }
 
 const fag: NextPage<PropsCategory> = ( {subCategories} ) => {
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value)
+  }
 
   return (
     <div>
       <div>
-        <SearchBar></SearchBar>
+        <SearchBar value={searchQuery} onChange={onChange}></SearchBar>
         <Categories subCategories={subCategories}></Categories>
       </div>
     </div>

@@ -2,7 +2,7 @@ import type { NextPage, GetStaticProps } from 'next'
 import React, { useState } from 'react'
 import Link from 'next/link'
 // Components
-import SubCategories from 'components/FAQ/SubCategories'
+import SubCategories from 'components/FAQ/SubCategories/SubCategories'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 // Services
 import fetchGraphQL from 'services/contentful'

@@ -2,7 +2,7 @@ import type { GetServerSideProps, GetStaticProps, NextPage } from 'next'
 import React from 'react'
 import Link from 'next/link'
 // Components 
-import Articles from 'components/FAQ/Articles'
+import Articles from 'components/FAQ/Articles/Articles'
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
 // Services
 import fetchGraphQL from 'services/contentful'
