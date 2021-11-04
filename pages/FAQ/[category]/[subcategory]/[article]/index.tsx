@@ -1,11 +1,13 @@
 import type { NextPage, GetStaticProps } from 'next'
-import React, { useState } from 'react'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Link from 'next/link'
+
 //Components 
 import Breadcrumb from 'components/Breadcrumb/Breadcrumb'
+
 // Services
 import fetchGraphQL from 'services/contentful'
+
 // Interfaces
 import { GetArticleByGraphQL, IArticle } from 'interfaces/FAQ'
 
@@ -20,26 +22,34 @@ interface PropsArticle {
 const article: NextPage<PropsArticle > = ({ article, subCatSlug, catSlug, articleSlug }) => {
   // Breadcrump
   const breadcrumbs = [
-    <Link href={'/faq'}>faq</Link>,
-    <Link href={`/faq/${catSlug}`}>{catSlug}</Link>,
-    <Link href={`/faq/${catSlug}/${subCatSlug}`}>{subCatSlug}</Link>,
-    articleSlug
-  ]
+    <Link key="faq-breadcrumb" href={'/faq'}>
+      faq
+    </Link>,
+    <Link key="faq-breadcrumb-category" href={`/faq/${catSlug}`}>
+      {catSlug}
+    </Link>,
+    <Link key="faq-breadcrumb-subcategory" href={`/faq/${catSlug}/${subCatSlug}`}>
+      {subCatSlug}
+    </Link>,
+    articleSlug,
+  ];
 
   // An Article
   if (!article) {
     return null 
   }
+
+  const richText = documentToReactComponents(article.answer.json);
  
   return (
     <div>
       <Breadcrumb breadcrumbs={breadcrumbs}></Breadcrumb>
       <div className="width-100% padding-xl">
-        <p className="font-bold margin-bottom-lg">{article.question}</p>
-        {documentToReactComponents(article.answer.json)}
+        <h1 className="font-bold margin-bottom-lg">{article.question}</h1>
+        {richText}
       </div>
     </div>
-  )
+  );
 }
 export default article
 

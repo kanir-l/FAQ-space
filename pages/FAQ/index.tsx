@@ -16,7 +16,7 @@ interface PropsCategory {
   subCategories: ISubCategory[]
 }
 
-const fag: NextPage<PropsCategory> = ( {subCategories} ) => {
+const FaqStartPage: NextPage<PropsCategory> = ({ subCategories }) => {
   const [searchQuery, setSearchQuery] = useState("")
   const router = useRouter();
 
@@ -49,7 +49,8 @@ const fag: NextPage<PropsCategory> = ( {subCategories} ) => {
     </div>
   );
 }
-export default fag
+
+export default FaqStartPage;
 
 
 export async function getStaticProps() {
