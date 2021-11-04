@@ -1,48 +1,31 @@
-import React, { ChangeEvent } from 'react'
-import router from 'next/dist/client/router'
-import classnames from 'classnames'
-// Interfaces 
-import { KeyboardEvent } from 'interfaces/FAQ'
+import { ChangeEvent, FC, FormEvent } from 'react'
 
 interface Props {
-    onChange:(event: ChangeEvent<HTMLInputElement>) => void  
-    value: string
+  value: string;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function Search (props: Props) {
-    // Styles classNames with classnames
-    const box = classnames(
-        'width-100%', 
-        'height-xxxxl', 
-        'padding-xl', 
-        'flex', 
-        'flex-center', 
-        'bg-primary'
-    )
-    const input = classnames(
-        'search-input__input', 
-        'form-control', 
-        'text-sm',
-        'width-60%', 
-        'height-lg', 
-        'radius-full', 
-        'border-black', 
-    )
-
-    return (
-        <div className={box}>
-            <input className={input} 
-                type="search" 
-                name="input-term" 
-                id="input-term" 
-                placeholder="Search..."
-                required 
-                value={props.value}
-                onChange={props.onChange} 
-                data-testid="seach-input"
-            />
-        </div>
-    )
-}
+const Search: FC<Props> = ({ value, onChange, onSubmit }) => {
+  return (
+    <div className="bg-primary">
+      <div className="container max-width-lg">
+        <form onSubmit={onSubmit} className="width-100% height-xxxxl flex items-center">
+          <input
+            className='form-control width-100%'
+            type="search"
+            name="input-term"
+            id="input-term"
+            placeholder="Search..."
+            required
+            value={value}
+            onChange={onChange}
+            data-testid="seach-input"
+          />
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default Search

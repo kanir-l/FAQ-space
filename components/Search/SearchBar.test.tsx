@@ -1,34 +1,32 @@
-import { render, fireEvent, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event';
 import SearchBar from './SearchBar'
 
 
-    test("Show input", () => {
-        const inputSearch = jest.fn()
-        render( <SearchBar value="" onChange={inputSearch} /> )
+test("it renders", async () => {
+    const onChange = jest.fn()
+    const onSubmit= jest.fn();
+    render(<SearchBar value="" onChange={onChange} onSubmit={onSubmit} />);
+    const search = screen.getByPlaceholderText(/Search.../i)
+    expect(search).toBeInTheDocument()
+})
 
-        const search = screen.getByPlaceholderText(/Search.../i)
+test("it calls onChange when the user types", async () => {
+    const onChange = jest.fn();
+    const onSubmit = jest.fn();
+    render(<SearchBar value="" onChange={onChange} onSubmit={onSubmit} />);
+    const search = screen.getByTestId("seach-input")
+    userEvent.type(search, "test")
+    expect(onChange).toBeCalledTimes(4);
+})
 
-        expect(search).toBeInTheDocument()
-    })
-
-    test("Pass the search term in the input field", () => {
-        const inputSearch = jest.fn()
-        render( <SearchBar value="" onChange={inputSearch} /> )
-        const search = screen.getByTestId("seach-input")
-        userEvent.type(search, "test")
-        
-        expect(screen.getByTestId("seach-input")).toHaveValue("test")
-    })
-
-  /*   test("Call inputSearch when keyDown", () => {
-        //const inputSearch = jest.fn() // Mock Function
-
-        render( <SearchBar /> )
-        
-        
-        
-    }) */
-
+test('it calls onSubmit when the user presses enter', async () => {
+    const onChange = jest.fn();
+    const onSubmit = jest.fn();
+    render(<SearchBar value="" onChange={onChange} onSubmit={onSubmit} />);
+    const search = screen.getByTestId('seach-input');
+    fireEvent.submit(search);
+    expect(onSubmit).toBeCalledTimes(1);
+})
 
 
