@@ -20,7 +20,7 @@ const FaqStartPage: NextPage<PropsCategory> = ({ subCategories }) => {
   const [searchQuery, setSearchQuery] = useState("")
   const router = useRouter();
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
   }
 
@@ -41,7 +41,7 @@ const FaqStartPage: NextPage<PropsCategory> = ({ subCategories }) => {
       <div>
         <SearchBar
           value={searchQuery}
-          onChange={onChange}
+          onChange={handleChange}
           onSubmit={handleOnSubmit}
         />
         <Categories subCategories={subCategories} />

@@ -2,8 +2,8 @@ import { ChangeEvent, FC, FormEvent } from 'react'
 
 interface Props {
   value: string;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }
 
 const Search: FC<Props> = ({ value, onChange, onSubmit }) => {

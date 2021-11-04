@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prepare": "husky install",
+    "pre-commit": "next lint"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.5.1",
@@ -33,6 +35,8 @@
     "@types/react": "17.0.30",
     "eslint": "^7.32.0",
     "eslint-config-next": "11.1.2",
+    "eslint-plugin-testing-library": "^5.0.0",
+    "husky": "^7.0.4",
     "typescript": "4.4.4"
   }
 }

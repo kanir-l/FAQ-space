@@ -20,7 +20,8 @@ const SearchResultPage: NextPage<PropsSearch> = ({
   searchTerm,
   error,
 }) => {
-  const breadcrumbs = [<Link href={'/faq'}>faq</Link>, 'Search results'];
+
+  const breadcrumbs = [<Link key="breadcrumb" href={'/faq'}>faq</Link>, 'Search results'];
 
   return (
     <div>
@@ -36,7 +37,7 @@ const SearchResultPage: NextPage<PropsSearch> = ({
         <div>
           <p className="padding-xl min-height-100vh">
             No articles was found with the search query{' '}
-            <strong>"{searchTerm}"</strong>
+            <strong>&quot;{searchTerm}&quot;</strong>
           </p>
         </div>
       )}
