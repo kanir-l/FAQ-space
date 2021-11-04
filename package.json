@@ -8,7 +8,8 @@
     "export": "next export",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.5.1",
@@ -32,8 +33,6 @@
     "@types/react": "17.0.30",
     "eslint": "^7.32.0",
     "eslint-config-next": "11.1.2",
-    "install": "^0.13.0",
-    "npm": "^8.1.2",
     "typescript": "4.4.4"
   }
 }
