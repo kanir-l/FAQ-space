@@ -1,4 +1,5 @@
 import { SyntheticEvent } from "react";
+import { Document } from '@contentful/rich-text-types';;
 
 export interface ICategory {
     title: string,
@@ -12,11 +13,13 @@ export interface ISubCategory {
 }
 
 export interface IArticle {
-    question: string,
-    answer: Object,
-    slug: string,
-    category: ICategory,
-    subCategory: ISubCategory
+  question: string;
+  answer: {
+    json: Document;
+  };
+  slug: string;
+  category: ICategory;
+  subCategory: ISubCategory;
 }
 
 //Contentful + GraphQL
