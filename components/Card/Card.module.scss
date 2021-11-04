@@ -1,3 +1,5 @@
+@use '../../node_modules/codyhouse-framework/main/assets/css/base/mixins' as mixin;
+
 /* -------------------------------- 
 
 File#: _1_card-v14
@@ -31,7 +33,7 @@ Usage: codyhouse.co/license
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  //background-color: alpha(var(--color-accent), 0.2);
+  background-color: mixin.alpha(var(--color-accent), 0.2);
 }
 
 .card-v14__icon {

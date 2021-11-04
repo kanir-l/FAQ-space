@@ -15,15 +15,13 @@ interface PropsCategory {
 const Categories: FC<PropsCategory> = ({ subCategories }) => {
   const container = classnames(
     'padding-lg',
-    'flex-center',
-    'flex-wrap'
+    'grid',
+    'gap-sm',
   );
 
   const categories = subCategories.map((subCategory: ISubCategory) => {
     return (
-        <div key={subCategory.category.slug}>
-          <Card title={subCategory.category.title} description={subCategory.title} slug={`/faq/${subCategory.category.slug}`} / >
-        </div>
+          <Card title={subCategory.category.title} description={subCategory.title} slug={`/faq/${subCategory.category.slug}`} key={subCategory.category.slug} />
       )
   })
   
