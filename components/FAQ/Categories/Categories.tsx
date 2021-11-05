@@ -1,6 +1,6 @@
-import { FC, Fragment } from 'react';
+import { FC } from 'react';
 import classnames from 'classnames';
-import style from './Categories.module.scss';
+
 
 // Components
 import Card from 'components/Card/Card'
