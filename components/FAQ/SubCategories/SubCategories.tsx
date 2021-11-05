@@ -24,7 +24,9 @@ const renderArticles = (subCatSlug: string, articles: IArticle[]) => {
         href={`/faq/${article.category.slug}/${article.subCategory.slug}/${article.slug}`}
         passHref
       >
-        <a className={p}>{article.question}</a>
+        <a className={p} data-testid="article">
+          {article.question}
+        </a>
       </Link>
     );
   });
@@ -49,7 +51,7 @@ const renderArticles = (subCatSlug: string, articles: IArticle[]) => {
           href={`/faq/${subCategory.category.slug}/${subCategory.slug}`}
           passHref
         >
-          <a>
+          <a data-testid = "subcategory">
             <h3 className={h3}>{subCategory.title}</h3>
           </a>
         </Link>

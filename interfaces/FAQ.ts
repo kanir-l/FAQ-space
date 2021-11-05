@@ -1,5 +1,5 @@
 import { SyntheticEvent } from "react";
-import { Document } from '@contentful/rich-text-types';;
+import { Document } from '@contentful/rich-text-types';
 
 export interface ICategory {
     title: string,
