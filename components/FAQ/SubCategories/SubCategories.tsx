@@ -51,7 +51,7 @@ const renderArticles = (subCatSlug: string, articles: IArticle[]) => {
           href={`/faq/${subCategory.category.slug}/${subCategory.slug}`}
           passHref
         >
-          <a data-testid = "subcategory">
+          <a data-testid = "subs-a">
             <h3 className={h3}>{subCategory.title}</h3>
           </a>
         </Link>

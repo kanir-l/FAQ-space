@@ -1,12 +1,17 @@
 import { render, screen } from '@testing-library/react'
 import SubCategories from './SubCategories'
+import { BLOCKS } from '@contentful/rich-text-types';
 
-test("card renders", async () => {
-    const mockArticle = [
+test("subcategories renders", async () => {
+    const mockArticles = [
         {
             question: "testQuestion1",
             answer: {
-                json: {}
+                json: {
+                    nodeType: BLOCKS.DOCUMENT as const,
+                    data: {},
+                    content: []
+                }
             },
             slug: "slug1",
             category: {
@@ -25,7 +30,11 @@ test("card renders", async () => {
         {
             question: "testQuestion2",
             answer: {
-                json: {}
+                json: {
+                    nodeType: BLOCKS.DOCUMENT as const,
+                    data: {},
+                    content: []
+                }
             },
             slug: "slug2",
             category: {
@@ -44,7 +53,11 @@ test("card renders", async () => {
         {
             question: "testQuestion3",
             answer: {
-                json: {}
+                json: {
+                    nodeType: BLOCKS.DOCUMENT as const,
+                    data: {},
+                    content: []
+                }
             },
             slug: "slug3",
             category: {
@@ -62,7 +75,7 @@ test("card renders", async () => {
         },
     ]
 
-    const mockSub = [
+    const mockSubs = [
         {
             title: "test1",
             slug: "test1",
@@ -89,9 +102,9 @@ test("card renders", async () => {
         }
     ]
         
-    render(<SubCategories subCategories={mockSub} articles={mockArticle}/>)
-    const subCategory = screen.getAllByTestId("subcategory")
-    const article = screen.getAllByTestId("article")
-    expect(subCategory).toHaveLength(mockSub.length)
-    expect(article).toHaveLength(mockArticle.length)
+    render(<SubCategories subCategories={mockSubs} articles={mockArticles}/>)
+    const subCategories = screen.getAllByTestId("subs-a")
+    const articles = screen.getAllByTestId("article")
+    expect(subCategories).toHaveLength(mockSubs.length)
+    expect(articles).toHaveLength(mockArticles.length)
 })

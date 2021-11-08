@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import Categories from './Categories'
 
-test("card renders", async () => {
-    const mockSub = [
+test("categories renders", async () => {
+    const mockSubs = [
         {
             title: "test1",
             slug: "test1",
@@ -29,7 +29,7 @@ test("card renders", async () => {
         }
     ]
    
-    render(<Categories subCategories={mockSub} />)
+    render(<Categories subCategories={mockSubs} />)
     const cardComponent = screen.getAllByTestId("card-a")
-    expect(cardComponent).toHaveLength(mockSub.length)
+    expect(cardComponent).toHaveLength(mockSubs.length)
 })

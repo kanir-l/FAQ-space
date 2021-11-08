@@ -26,7 +26,7 @@ const Articles: FC<PropsArticle> = ({ articles }) => {
           href={`/faq/${article.category.slug}/${article.subCategory.slug}/${article.slug}`}
           passHref
         >
-          <a className={p}>{article.question}</a>
+          <a className={p} data-testid="articles-a">{article.question}</a>
         </Link>
       </div>
     );
